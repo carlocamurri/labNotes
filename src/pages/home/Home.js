@@ -4,6 +4,7 @@ import { Container } from "reactbulma";
 import TextEditor from "../../components/TextEditor";
 import Options from "../../components/Options";
 import Cells from "./Cells";
+import Example from "../../components/DataGrid";
 
 export default class Home extends Component {
 
@@ -13,8 +14,10 @@ export default class Home extends Component {
 
     render() {
         return (
+
             <Container is-fluid="true">
                 <Cells />
+                <Example />
             </Container>
         );
     }

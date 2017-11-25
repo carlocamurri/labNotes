@@ -1,4 +1,6 @@
 import update from 'immutability-helper';
+import { Button } from "reactbulma";
+
 const ReactDataGrid = require('react-data-grid');
 const React = require('react');
 
@@ -23,7 +25,8 @@ class Example extends React.Component {
                 editable: true,
             }
         ];
-        this.activateLasers = this.activateLasers.bind(this);
+        this.addRow = this.addRow.bind(this);
+        this.addColumn = this.addColumn.bind(this);
         this.state = { rows: this.createRows(2),
                         columns:this._columns};
     }
@@ -60,10 +63,19 @@ class Example extends React.Component {
         this.setState({ rows });
     };
 
-    activateLasers(){
+    addRow(){
         let rowsCurrent = this.state.rows;
         rowsCurrent.push({ id:"",task:"",complete:""})
         this.setState({ rows: rowsCurrent});
+    }
+    addColumn(){
+        let colsCurrent = this.state.columns;
+        colsCurrent.push({  key: 'id',
+                            name: 'ID',
+                            width: 80})
+        console.log(colsCurrent)
+        this.setState({ columns: colsCurrent});
+        this.forceUpdate()
     }
 
 
@@ -79,9 +91,12 @@ class Example extends React.Component {
                 onGridRowsUpdated={this.handleGridRowsUpdated}/>
 
 
-            <button onClick={this.activateLasers}>
-            Activate Lasers
-             </button>
+            <Button onClick={this.addRow}>
+            Add Row
+             </Button>
+                <Button onClick={this.addColumn}>
+                    Add column
+                </Button>
             </div>
 
 
