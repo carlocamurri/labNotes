@@ -2,6 +2,10 @@ import React, {Component} from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 
+var editorStyle = {
+    padding: "3px"
+};
+
 export default class TextCell extends Component {
 
     constructor(props) {
@@ -17,7 +21,8 @@ export default class TextCell extends Component {
     render() {
         return (
             <ReactQuill value={this.state.text}
-                onChange={this.handleChange} />
+                onChange={this.handleChange} 
+                style={editorStyle}/>
         );
     }
 }

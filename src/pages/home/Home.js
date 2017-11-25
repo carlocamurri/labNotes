@@ -7,10 +7,13 @@ import Cells from "./Cells";
 
 export default class Home extends Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
-            <Container is-fluid>
-                <Options />
+            <Container is-fluid="true">
                 <Cells />
             </Container>
         );

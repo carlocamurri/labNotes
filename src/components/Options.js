@@ -25,10 +25,10 @@ export default class Options extends Component {
 
     render() {
         return (
-            <Container is-fluid style={containerStyle}>
+            <Container is-fluid="true" style={containerStyle}>
                 <Nav>
                     <Nav.Item style={navItemStyle}>
-                        <OptionButton onClick={this.buttonClicked}>Add Text Cell</OptionButton>
+                        <OptionButton onClick={this.props.addEditor}>Add Text Cell</OptionButton>
                     </Nav.Item>
                     <Nav.Item style={navItemStyle}>
                         <OptionButton>Add Table Cell</OptionButton>
