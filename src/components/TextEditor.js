@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 
-export default class TextEditor extends Component {
+export default class TextCell extends Component {
 
     constructor(props) {
         super(props);
@@ -13,7 +13,7 @@ export default class TextEditor extends Component {
     handleChange(value) {
         this.setState({ text: value });
     }
-     
+
     render() {
         return (
             <ReactQuill value={this.state.text}
