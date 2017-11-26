@@ -46,6 +46,12 @@ export default class Options extends Component {
                     <Nav.Item style={navItemStyle}>
                         <OptionButton onClick={this.props.addSearch}>Add Search</OptionButton>
                     </Nav.Item>
+                    <Nav.Item style={navItemStyle}>
+                        <Button large info outlined><a href={"https://www.onlineocr.net/"} target="_blank">OCR</a></Button>
+                    </Nav.Item>
+                    <Nav.Item style={navItemStyle}>
+                        <Button large info outlined><a href={"https://www.tools4noobs.com/summarize/"} target="_blank">Summarize</a></Button>
+                    </Nav.Item>
                         <Nav.Item>
                             <Button large primary onClick={this.save}>Save Note</Button>
                             <AlertContainer ref={a => this.msg = a}/>
