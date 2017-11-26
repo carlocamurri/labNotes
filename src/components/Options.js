@@ -33,6 +33,9 @@ export default class Options extends Component {
                     <Nav.Item style={navItemStyle}>
                         <OptionButton onClick={this.props.addTable}>Add Table Cell</OptionButton>
                     </Nav.Item>
+                    <Nav.Item style={navItemStyle}>
+                        <OptionButton onClick={this.props.addFormula}>Add Formula</OptionButton>
+                    </Nav.Item>
                 </Nav>
             </Container>
         );
