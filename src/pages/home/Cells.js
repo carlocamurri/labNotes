@@ -4,7 +4,7 @@ import { Container } from "reactbulma";
 import Options from "../../components/Options";
 import TextEditor from "../../components/TextEditor";
 import DataTable from "../../components/DataTable";
-import Formula from "../../components/Formula";
+import Search from "../../components/Search";
 
 export default class Cells extends Component {
 
@@ -16,7 +16,7 @@ export default class Cells extends Component {
 
         this.addTextEditor = this.addTextEditor.bind(this);
         this.addDataTable = this.addDataTable.bind(this);
-        this.addFormula = this.addFormula.bind(this);
+        this.addSearch = this.addSearch.bind(this);
     }
      
     addTextEditor() {
@@ -31,17 +31,16 @@ export default class Cells extends Component {
         this.setState({cells: ccells});
     }
 
-    addFormula() {
+    addSearch() {
         var ccells = this.state.cells;
-        ccells.push(Formula);
+        ccells.push(Search);
         this.setState({cells: ccells});
     }
-
 
     render() { 
         return (
             <Container is-fluid="true">
-                <Options addEditor={this.addTextEditor} addTable={this.addDataTable} addFormula={this.addFormula}/>
+                <Options addEditor={this.addTextEditor} addTable={this.addDataTable} addSearch={this.addSearch}/>
                 {this.state.cells.map((Component, i) => <Component key={i} />)}
             </Container>
         );
