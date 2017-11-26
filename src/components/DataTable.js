@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Panel, Button, Table, Input } from "reactbulma";
 
-var testColumns = [ "first", "second", "third" ];
+var testColumns = [ "Time (s)", "Temperature (K)", "pH Level" ];
 
 var tableStyle = {
     padding: "0px"
@@ -11,15 +11,30 @@ var buttonStyle = {
     margin: "3px"
 };
 
+var inputHeaderStyle = {
+    width: "100%",
+    border: "none",
+    background: "transparent",
+    boxShadow: "none",
+    fontWeight: "bold"
+};
+
+var inputStyle = {
+    width: "100%",
+    border: "none",
+    background: "transparent",
+    boxShadow: "none"
+};
+
 export default class DataTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
             columns: testColumns,
             rowValues: [
-                ["a"],
-                ["b"],
-                ["c"]
+                [],
+                [],
+                []
             ]
         };
 
@@ -87,7 +102,7 @@ export default class DataTable extends Component {
         var rrowValues = this.state.rowValues.slice();
         var indices = id.split(" ");
         console.log("Indices: ", indices);
-        rrowValues[parseInt(indices[0])][parseInt(indices[1])] = event.target.value;
+        rrowValues[parseInt(indices[0], 10)][parseInt(indices[1], 10)] = event.target.value;
         this.setState({
             columns: this.state.columns,
             rowValues: rrowValues
@@ -98,8 +113,8 @@ export default class DataTable extends Component {
         return (
             <Panel style={tableStyle}>
                 <Panel.Heading>
-                    <Button primary outlined onClick={this.addRow} style={buttonStyle}>Add row</Button>
-                    <Button primary outlined onClick={this.addColumn} style={buttonStyle}>Add column</Button>
+                    <Button info outlined onClick={this.addRow} style={buttonStyle}>Add row</Button>
+                    <Button info outlined onClick={this.addColumn} style={buttonStyle}>Add column</Button>
                 </Panel.Heading>
                 <Panel.Block>
                     <TableRenderer columnNames={this.state.columns} 
@@ -114,25 +129,21 @@ export default class DataTable extends Component {
 }
 
 var TableRenderer = (props) => (
-    <Table style={props.style}>
+    <Table is-bordered="true" is-hoverable="true" style={props.style}>
         <TableHeader columnNames={props.columnNames} handleColumnEdit={props.handleColumnEdit} />
         <TableBody rowValues={props.rowValues} handleRowEdit={props.handleRowEdit} />       
     </Table>
 );
 
 var TableHeader = (props) => (
-    <Table.Head>
+    <Table.Head is-bordered="true" is-hoverable="true">
         <Table.Tr>
-            {props.columnNames.map((columnName, i) => ( <Table.Th key={i}><Input value={columnName} onChange={props.handleColumnEdit.bind(this, i)}></Input></Table.Th> ))} 
+            {props.columnNames.map((columnName, i) => ( <Table.Th key={i}><Input value={columnName} onChange={props.handleColumnEdit.bind(this, i)} style={inputHeaderStyle}></Input></Table.Th> ))} 
         </Table.Tr>
     </Table.Head>
 )
 
 class TableBody extends Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     getNthRow(n) {
         var row = [];
@@ -157,7 +168,7 @@ class TableBody extends Component {
         }
         console.log("Rows to render: ", rowsToRender);
         return (
-            <Table.Body>
+            <Table.Body is-bordered="true" is-hoverable="true">
                 {rowsToRender.map((row, j) => {
                     return (<TableRow keyValue={j} key={j} values={row} handleRowEdit={this.props.handleRowEdit}></TableRow>);
                 })}
@@ -168,6 +179,6 @@ class TableBody extends Component {
 
 var TableRow = (props) => (
     <Table.Tr key={props.keyValue}>
-        {props.values.map((value, i) => ( <Table.Th key={i}><Input value={value} onChange={props.handleRowEdit.bind(this, i + " " + props.keyValue)}></Input></Table.Th> ))}
+        {props.values.map((value, i) => ( <Table.Th key={i}><Input value={value} onChange={props.handleRowEdit.bind(this, i + " " + props.keyValue)} style={inputStyle}></Input></Table.Th> ))}
     </Table.Tr>
 );
