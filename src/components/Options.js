@@ -12,7 +12,7 @@ var navItemStyle = {
 };
 
 let OptionButton = (props) => (
-    <Button primary large onClick={props.onClick}>
+    <Button info large onClick={props.onClick}>
         {props.children}
     </Button>
 );
