@@ -3,6 +3,7 @@ import { Container } from "reactbulma";
 
 import Options from "../../components/Options";
 import TextEditor from "../../components/TextEditor";
+import DataTable from "../../components/DataTable";
 
 export default class Cells extends Component {
 
@@ -13,6 +14,7 @@ export default class Cells extends Component {
         };
 
         this.addTextEditor = this.addTextEditor.bind(this);
+        this.addDataTable = this.addDataTable.bind(this);
     }
      
     addTextEditor() {
@@ -21,10 +23,16 @@ export default class Cells extends Component {
         this.setState({cells: ccells});
     }
 
+    addDataTable() {
+        var ccells = this.state.cells;
+        ccells.push(DataTable);
+        this.setState({cells: ccells});
+    }
+
     render() { 
         return (
             <Container is-fluid="true">
-                <Options addEditor={this.addTextEditor}/>
+                <Options addEditor={this.addTextEditor} addTable={this.addDataTable} />
                 {this.state.cells.map((Component, i) => <Component key={i} />)}
             </Container>
         );

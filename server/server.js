@@ -1,22 +1,16 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 fs = require('fs')
 url = require('url');
-app.use(express.static(__dirname + '/public'));
+path = require("path");
+morgan = require("morgan");
 
-app.post('/', function(request, respond) {
-    var body = '';
-    filePath = __dirname + '/public/data.txt';
-    request.on('data', function(data) {
-        body += data;
-    });
+app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 
-    request.on('end', function (){
-        fs.appendFile(filePath, body, function() {
-            respond.end();
-        });
-    });
+app.use(express.static(path.resolve(__dirname, '..', 'build')));
+
+app.get("/", function(req, res) {
+    res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 });
 
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(5000, () => console.log('App listening on port 5000!'));

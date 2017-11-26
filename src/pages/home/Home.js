@@ -4,7 +4,7 @@ import { Container } from "reactbulma";
 import TextEditor from "../../components/TextEditor";
 import Options from "../../components/Options";
 import Cells from "./Cells";
-import Example from "../../components/DataGrid";
+import DataTable from "../../components/DataTable";
 
 export default class Home extends Component {
 
@@ -17,7 +17,6 @@ export default class Home extends Component {
 
             <Container is-fluid="true">
                 <Cells />
-                <Example />
             </Container>
         );
     }

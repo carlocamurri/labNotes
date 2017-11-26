@@ -12,7 +12,7 @@ var navItemStyle = {
 };
 
 let OptionButton = (props) => (
-    <Button primary outlined large onClick={props.onClick}>
+    <Button primary large onClick={props.onClick}>
         {props.children}
     </Button>
 );
@@ -31,7 +31,7 @@ export default class Options extends Component {
                         <OptionButton onClick={this.props.addEditor}>Add Text Cell</OptionButton>
                     </Nav.Item>
                     <Nav.Item style={navItemStyle}>
-                        <OptionButton>Add Table Cell</OptionButton>
+                        <OptionButton onClick={this.props.addTable}>Add Table Cell</OptionButton>
                     </Nav.Item>
                 </Nav>
             </Container>
