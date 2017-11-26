@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { Container, Nav } from "reactbulma";
 import { Button } from "reactbulma";
+import AlertContainer from 'react-alert';
 
 var containerStyle = {
     margin: "40px"
@@ -19,8 +20,17 @@ let OptionButton = (props) => (
 
 export default class Options extends Component {
 
-    buttonClicked() {
-        console.log("Button clicked");
+    constructor(props) {
+        super(props);
+
+        this.save = this.save.bind(this);
+    }
+
+    save() {
+        this.msg.show("Note Saved!", {
+            time: 3000,
+            type: "success"
+        });
     }
 
     render() {
@@ -33,6 +43,14 @@ export default class Options extends Component {
                     <Nav.Item style={navItemStyle}>
                         <OptionButton onClick={this.props.addTable}>Add Table Cell</OptionButton>
                     </Nav.Item>
+                    <Nav.Item style={navItemStyle}>
+                        <OptionButton onClick={this.props.addSearch}>Add Search</OptionButton>
+                    </Nav.Item>
+                        <Nav.Item>
+                            <Button large primary onClick={this.save}>Save Note</Button>
+                            <AlertContainer ref={a => this.msg = a}/>
+                        </Nav.Item>
+                    
                 </Nav>
             </Container>
         );
